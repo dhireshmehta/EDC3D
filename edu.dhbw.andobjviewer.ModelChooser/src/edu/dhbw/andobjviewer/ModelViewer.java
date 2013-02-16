@@ -229,7 +229,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 				
 			
 			
-			//read the model file:						
+			//read the model file   :						
 			if(modelFileName.endsWith(".obj")) {
 				ObjParser parser = new ObjParser(fileUtil);
 				try {
