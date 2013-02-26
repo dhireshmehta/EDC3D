@@ -67,8 +67,6 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 
 	private Model model;
 	private Model3D model3d;
-	private Model model2;
-	private Model3D model3d2;
 	private ProgressDialog waitDialog;
 	private Resources res;
 	
@@ -166,7 +164,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		 */
 		
 		public boolean onTouch(View v, MotionEvent event) {
-			if(model2!=null) {
+			if(model!=null) {
 				switch(event.getAction()) {
 					//Action started
 					default:
@@ -180,23 +178,19 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 						float dY = lastY - event.getY();
 						lastX = event.getX();
 						lastY = event.getY();
-						if(model2 != null) {
+						if(model != null) {
 							switch(mode) {
 								case MENU_SCALE:
-									model2.setScale(dY/100.0f);
+									
 									model.setScale(dY/100.0f);
 
 						            break;
 						        case MENU_ROTATE:
-						        	model2.setXrot(-1*dX);//dY-> Rotation um die X-Achse
-									model2.setYrot(-1*dY);//dX-> Rotation um die Y-Achse
-									model.setXrot(-1*dX);//dY-> Rotation um die X-Achse
+						        	model.setXrot(-1*dX);//dY-> Rotation um die X-Achse
 									model.setYrot(-1*dY);//dX-> Rotation um die Y-Achse
 						            break;
 						        case MENU_TRANSLATE:
-						        	model2.setXpos(dY/10f);
-									model2.setYpos(dX/10f);
-									model.setXpos(dY/10f);
+						        	model.setXpos(dY/10f);
 									model.setYpos(dX/10f);
 						        	break;
 							}		
@@ -221,7 +215,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     	@Override
     	protected Void doInBackground(Void... params) {
     		
-			String modelFileName = "sofa.obj";
+			String modelFileName = "1116a.obj";
 			BaseFileUtil fileUtil= null;
 			
 				fileUtil = new AssetsFileUtil(getResources().getAssets());
@@ -249,28 +243,10 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 			
 			
 			}
-			modelFileName="superman.obj";
-			if(modelFileName.endsWith(".obj")) {
-				ObjParser parser = new ObjParser(fileUtil);
-				try {
-					
-				
-					if(fileUtil != null) {
-						BufferedReader fileReader = fileUtil.getReaderFromName(modelFileName);
-						if(fileReader != null) {
-							model2 = parser.parse("Model2", fileReader);
-							model3d2 = new Model3D(model2,"center.patt");
-						}
-					}
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
 			
 			
-			}
+			
+			
     		return null;
     	}
     	@Override
@@ -285,12 +261,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 			} catch (AndARException e) {
 				e.printStackTrace();
 			}
-    		try {
-    			if(model3d2!=null)
-    				artoolkit.registerARObject(model3d2);
-			} catch (AndARException e) {
-				e.printStackTrace();
-			}
+    		
 			startPreview();
     	}
     }
