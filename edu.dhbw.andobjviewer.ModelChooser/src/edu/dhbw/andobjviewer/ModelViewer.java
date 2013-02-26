@@ -215,7 +215,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     	@Override
     	protected Void doInBackground(Void... params) {
     		
-			String modelFileName = "1116a.obj";
+			String modelFileName = "11.17.A.obj";
 			BaseFileUtil fileUtil= null;
 			
 				fileUtil = new AssetsFileUtil(getResources().getAssets());
@@ -231,7 +231,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 						BufferedReader fileReader = fileUtil.getReaderFromName(modelFileName);
 						if(fileReader != null) {
 							model = parser.parse("Model", fileReader);
-							model3d = new Model3D(model,"barcode.patt");
+							model3d = new Model3D(model,"marker16.patt");
 						}
 					}
 					
