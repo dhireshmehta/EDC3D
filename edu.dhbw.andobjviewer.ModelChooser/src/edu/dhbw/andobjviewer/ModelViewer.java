@@ -67,6 +67,8 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 
 	private Model model;
 	private Model3D model3d;
+	private Model model2;
+	private Model3D model3d2;
 	private ProgressDialog waitDialog;
 	private Resources res;
 	
@@ -164,7 +166,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		 */
 		
 		public boolean onTouch(View v, MotionEvent event) {
-			if(model!=null) {
+			if(model!=null && model2!=null) {
 				switch(event.getAction()) {
 					//Action started
 					default:
@@ -183,15 +185,20 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 								case MENU_SCALE:
 									
 									model.setScale(dY/100.0f);
+									model2.setScale(dY/100.0f);
 
 						            break;
 						        case MENU_ROTATE:
 						        	model.setXrot(-1*dX);//dY-> Rotation um die X-Achse
 									model.setYrot(-1*dY);//dX-> Rotation um die Y-Achse
+						        	model2.setXrot(-1*dX);//dY-> Rotation um die X-Achse
+									model2.setYrot(-1*dY);//dX-> Rotation um die Y-Achse
 						            break;
 						        case MENU_TRANSLATE:
 						        	model.setXpos(dY/10f);
 									model.setYpos(dX/10f);
+									model2.setXpos(dY/10f);
+									model2.setYpos(dX/10f);
 						        	break;
 							}		
 						}
@@ -231,7 +238,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 						BufferedReader fileReader = fileUtil.getReaderFromName(modelFileName);
 						if(fileReader != null) {
 							model = parser.parse("Model", fileReader);
-							model3d = new Model3D(model,"marker16.patt");
+							model3d = new Model3D(model,"center.patt");
 						}
 					}
 					
@@ -241,9 +248,29 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 					e.printStackTrace();
 				}
 			
+				
+				
+				
 			
 			}
-			
+			modelFileName="11.16.A.obj";
+			if(modelFileName.endsWith(".obj")) {
+				ObjParser parser = new ObjParser(fileUtil);
+				try {
+										if(fileUtil != null) {
+						BufferedReader fileReader = fileUtil.getReaderFromName(modelFileName);
+						if(fileReader != null) {
+							model2 = parser.parse("Model", fileReader);
+							model3d2 = new Model3D(model2,"barcode.patt");
+						}
+					}
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
 			
 			
 			
@@ -258,6 +285,12 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     		try {
     			if(model3d!=null)
     				artoolkit.registerARObject(model3d);
+			} catch (AndARException e) {
+				e.printStackTrace();
+			}
+    		try {
+    			if(model3d2!=null)
+    				artoolkit.registerARObject(model3d2);
 			} catch (AndARException e) {
 				e.printStackTrace();
 			}
