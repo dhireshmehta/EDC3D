@@ -10,6 +10,9 @@ public class ArrayIterator implements Iterator<Object> {
 	public ArrayIterator(Object anArray[]) {
 		array = anArray;
 	}
+	public ArrayIterator() {
+		
+	}
 
 	public boolean hasNext() {
 		return pos < array.length;
@@ -25,4 +28,20 @@ public class ArrayIterator implements Iterator<Object> {
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}
+	public static boolean isAnynull(Object arrays[]){
+		
+		int temppos=0;
+		
+		boolean flag=false;
+		for(;temppos<arrays.length;temppos++)
+		{
+			if(arrays[temppos]==null)
+				flag=true;
+		}
+		
+		
+		return flag;
+	}
+	
+	
 }

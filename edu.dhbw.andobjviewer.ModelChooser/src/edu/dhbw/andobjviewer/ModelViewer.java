@@ -35,6 +35,8 @@ import edu.dhbw.andobjviewer.graphics.Model3D;
 import edu.dhbw.andobjviewer.models.Model;
 import edu.dhbw.andobjviewer.parser.ObjParser;
 import edu.dhbw.andobjviewer.parser.ParseException;
+import edu.dhbw.andobjviewer.parser.SimpleTokenizer;
+import edu.dhbw.andobjviewer.util.ArrayIterator;
 import edu.dhbw.andobjviewer.util.AssetsFileUtil;
 import edu.dhbw.andobjviewer.util.BaseFileUtil;
 
@@ -63,12 +65,12 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 	private final int MENU_SCREENSHOT = 3;
 	
 	private int mode = MENU_SCALE;
+	String names;
+	SimpleTokenizer temptoken= new SimpleTokenizer();
 	
-
-	private Model model;
-	private Model3D model3d;
-	private Model model2;
-	private Model3D model3d2;
+	private Model[] models;
+	private Model3D[] models3d;
+	
 	private ProgressDialog waitDialog;
 	private Resources res;
 	
@@ -84,6 +86,12 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		super.setNonARRenderer(new LightingRenderer());//or might be omitted
 		res=getResources();
 		artoolkit = getArtoolkit();		
+		names =(String) res.getText(R.string.Names_markers_models); 
+		temptoken.setDelimiter(",");
+		temptoken.setStr(names);
+		
+		models = new Model[temptoken.delimOccurCount()];
+		models3d=new Model3D[temptoken.delimOccurCount()];
 		getSurfaceView().setOnTouchListener(new TouchEventHandler());
 		getSurfaceView().getHolder().addCallback(this);
 	}
@@ -140,7 +148,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     	//load the model
     	//this is done here, to assure the surface was already created, so that the preview can be started
     	//after loading the model
-    	if(model == null) {
+    	if(ArrayIterator.isAnynull(models)) {
 			waitDialog = ProgressDialog.show(this, "", 
 	                getResources().getText(R.string.loading), true);
 			waitDialog.show();
@@ -166,7 +174,10 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		 */
 		
 		public boolean onTouch(View v, MotionEvent event) {
-			if(model!=null && model2!=null) {
+			if(!ArrayIterator.isAnynull(models) ) {
+				for(int i=0;i<models.length;i++)
+				{
+					Model model=models[i];
 				switch(event.getAction()) {
 					//Action started
 					default:
@@ -185,20 +196,16 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 								case MENU_SCALE:
 									
 									model.setScale(dY/100.0f);
-									model2.setScale(dY/100.0f);
 
 						            break;
 						        case MENU_ROTATE:
 						        	model.setXrot(-1*dX);//dY-> Rotation um die X-Achse
 									model.setYrot(-1*dY);//dX-> Rotation um die Y-Achse
-						        	model2.setXrot(-1*dX);//dY-> Rotation um die X-Achse
-									model2.setYrot(-1*dY);//dX-> Rotation um die Y-Achse
 						            break;
 						        case MENU_TRANSLATE:
 						        	model.setXpos(dY/10f);
 									model.setYpos(dX/10f);
-									model2.setXpos(dY/10f);
-									model2.setYpos(dX/10f);
+
 						        	break;
 							}		
 						}
@@ -211,6 +218,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 						break;
 				}
 			}
+			}
 			return true;
 		}
     	
@@ -222,7 +230,13 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     	@Override
     	protected Void doInBackground(Void... params) {
     		
-			String modelFileName = "11.17.A.obj";
+    		for(int i=0;i<models.length;i++)
+    		{
+    		
+    		String number=temptoken.next();
+    		
+    		
+    		String modelFileName = number+".obj";
 			BaseFileUtil fileUtil= null;
 			
 				fileUtil = new AssetsFileUtil(getResources().getAssets());
@@ -237,8 +251,8 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 										if(fileUtil != null) {
 						BufferedReader fileReader = fileUtil.getReaderFromName(modelFileName);
 						if(fileReader != null) {
-							model = parser.parse("Model", fileReader);
-							model3d = new Model3D(model,"center.patt");
+							models[i] = parser.parse("Model no-"+number, fileReader);
+							models3d[i] = new Model3D(models[i],number+".patt");
 						}
 					}
 					
@@ -250,30 +264,10 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 			
 				
 				
-				
+			}	
 			
-			}
-			modelFileName="11.16.A.obj";
-			if(modelFileName.endsWith(".obj")) {
-				ObjParser parser = new ObjParser(fileUtil);
-				try {
-										if(fileUtil != null) {
-						BufferedReader fileReader = fileUtil.getReaderFromName(modelFileName);
-						if(fileReader != null) {
-							model2 = parser.parse("Model", fileReader);
-							model3d2 = new Model3D(model2,"barcode.patt");
-						}
-					}
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			
-			
+    		}
+    		
     		return null;
     	}
     	@Override
@@ -283,17 +277,15 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     		
     		//register model
     		try {
-    			if(model3d!=null)
-    				artoolkit.registerARObject(model3d);
+    			if(!ArrayIterator.isAnynull(models3d))
+    				{for(int i=0;i<models3d.length;i++)
+    				{artoolkit.registerARObject(models3d[i]);}
+    				}
 			} catch (AndARException e) {
 				e.printStackTrace();
 			}
-    		try {
-    			if(model3d2!=null)
-    				artoolkit.registerARObject(model3d2);
-			} catch (AndARException e) {
-				e.printStackTrace();
-			}
+    		
+			
     		
 			startPreview();
     	}
@@ -331,6 +323,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		};
 		
 	}
-	
-	
 }
+	
+	
+

@@ -34,6 +34,7 @@ public final class R {
         public static final int main=0x7f030003;
     }
     public static final class string {
+        public static final int Names_markers_models=0x7f040015;
         public static final int android_markt_not_avail=0x7f040002;
         public static final int app_description=0x7f04000a;
         public static final int app_name=0x7f040000;
@@ -50,7 +51,7 @@ public final class R {
         public static final int scale=0x7f040008;
         public static final int screenshotfailed=0x7f04000d;
         public static final int screenshotsaved=0x7f04000c;
-        public static final int select_model=0x7f040015;
+        public static final int select_model=0x7f040016;
         public static final int select_model_file=0x7f040001;
         public static final int take_screenshot=0x7f04000b;
         public static final int translate=0x7f040007;
