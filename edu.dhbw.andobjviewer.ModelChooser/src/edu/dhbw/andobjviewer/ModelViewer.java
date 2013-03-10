@@ -19,6 +19,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -239,6 +240,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     		String modelFileName = number+".obj";
 			BaseFileUtil fileUtil= null;
 			
+			Log.d("Model Name", number);
 				fileUtil = new AssetsFileUtil(getResources().getAssets());
 				fileUtil.setBaseFolder("models/");
 				

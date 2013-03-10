@@ -33,7 +33,7 @@ public class Model3D extends ARObject implements Serializable{
 	private HashMap<Material, Integer> textureIDs = new HashMap<Material, Integer>();
 	
 	public Model3D(Model model,String pattern) {
-		super("model", pattern, 80.0, new double[]{0,0});
+		super("model", pattern, 160.0, new double[]{0,0});
 		this.model = model;
 		model.finalize();
 		//separate texture from non textured groups for performance reasons
