@@ -8,7 +8,7 @@
         <body>
 			<h1>EDU CONSTRUCT-3D - Instructions</h1>
 			<br />
-			<p>Edu Construct-3D is an Android application that is capable of displaying 3d models of FE SEM II Mumbai University Subject ENGINEERING DRAWING on Augmented Reality markers.
+			<p>Edu Construct-3D is an Android application that is capable of displaying 3d models of FE SEM II Mumbai University Subject ENGINEERING DRAWING on Augmented Reality markers.Currently only 3 Models are implemented. If anybody is interested in developing 3D models please contact on Email Addresses Mentioned <a href="#credits">here</a>
 			
 			<ol>
 				<li><a href="#firststeps">First steps</a></li>
@@ -67,7 +67,7 @@
 				<li>This app contains models from <a href="http://resources.blogscopia.com/modelos_en.html">resources.blogscopia.com</a> released under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons 3.0 Unported license</a>, see also: <a href="http://www.scopia.es">www.scopia.es</a>.</li>
 				<li>This product includes software developed by the <a href="http://mij.oltrelinux.com/devel/simclist/">SimCList  project</a>.</li>
 			</ul>
-			<h2>Credits</h2>
+			<h2><a name="credits" >Credits</a></h2>
 			<ul>
 			<li>Dhiresh Mehta - <a href="mailto:mehta.dhiresh@gmail.com">mehta.dhiresh@gmail.com</a> </li>
 			<li>Sarang Kunte - <a href="mailto:sarangkunte05@yahoo.com">sarangkunte05@yahoo.com</a> </li>

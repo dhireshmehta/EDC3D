@@ -18,5 +18,6 @@
 <string name="screenshotfailed">Failed to save screenshot: </string>
 <string name="instructions">Instructions</string>
 <string name="help_file">index.html</string>
+<string name="goback">Go Back</string>
 <string name="Names_markers_models">11_16_A,11_17_A,11_18_A,</string>
 </resources>
