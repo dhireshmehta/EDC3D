@@ -52,13 +52,6 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 	/**
 	 * View a file in the assets folder
 	 */
-	public static final int TYPE_INTERNAL = 0;
-	/**
-	 * View a file on the sd card.
-	 */
-	public static final int TYPE_EXTERNAL = 1;
-	
-	public static final boolean DEBUG = false;
 	
 	/* Menu Options: */
 	private final int MENU_SCALE = 0;
@@ -324,13 +317,18 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 	class TakeAsyncScreenshot extends AsyncTask<Void, Void, Void> {
 		
 		private String errorMsg = null;
-
+		String name="";
+		String path="";
+		
 		@Override
 		protected Void doInBackground(Void... params) {
 			Bitmap bm = takeScreenshot();
 			FileOutputStream fos;
+			
 			try {
-				fos = new FileOutputStream("/sdcard/EDC3D-"+new Date().getTime()+".png");
+				path= (String) getResources().getText(R.string.screenshotpath);
+				name= (String) getResources().getText(R.string.screenshotname)+"-"+new Date().getTime()+".png";
+				fos = new FileOutputStream(path+name);
 				bm.compress(CompressFormat.PNG, 100, fos);
 				fos.flush();
 				fos.close();					
@@ -346,7 +344,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		
 		protected void onPostExecute(Void result) {
 			if(errorMsg == null)
-				Toast.makeText(ModelViewer.this, getResources().getText(R.string.screenshotsaved), Toast.LENGTH_SHORT ).show();
+				Toast.makeText(ModelViewer.this, getResources().getString(R.string.screenshotsaved)+" "+ name, Toast.LENGTH_SHORT ).show();
 			else
 				Toast.makeText(ModelViewer.this, getResources().getText(R.string.screenshotfailed)+errorMsg, Toast.LENGTH_SHORT ).show();
 		};
