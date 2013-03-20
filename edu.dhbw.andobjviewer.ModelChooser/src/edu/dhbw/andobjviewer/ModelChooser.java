@@ -63,14 +63,7 @@ public class ModelChooser extends ListActivity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		item = new Item();
-		item.text = getResources().getString(R.string.custom_model);
-		item.type = Item.TYPE_HEADER;
-		models.add(item);
-		item = new Item();
-		item.text = getResources().getString(R.string.choose_custom_model);
-		item.icon = Integer.valueOf(R.drawable.open);
-		models.add(item);
+			
 		item = new Item();
 		item.text = getResources().getString(R.string.help);
 		item.type = Item.TYPE_HEADER;
@@ -90,11 +83,7 @@ public class ModelChooser extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 		Item item = (Item) this.getListAdapter().getItem(position);
 		String str = item.text;
-		if(str.equals(getResources().getString(R.string.choose_custom_model))) {
-			//start oi file manager activity
-			Intent intent = new Intent(ModelChooser.this, CheckFileManagerActivity.class);
-            startActivity(intent);
-		} else if(str.equals(getResources().getString(R.string.instructions))) {
+		if(str.equals(getResources().getString(R.string.instructions))) {
 			//show the instructions activity
 			startActivity(new Intent(ModelChooser.this, InstructionsActivity.class));
 		} else {

@@ -34,16 +34,16 @@ public final class R {
         public static final int main=0x7f030003;
     }
     public static final class string {
-        public static final int Names_markers_models=0x7f040015;
+        public static final int Names_markers_models=0x7f040014;
         public static final int android_markt_not_avail=0x7f040002;
         public static final int app_description=0x7f04000a;
         public static final int app_name=0x7f040000;
         public static final int choose_a_model=0x7f040011;
         public static final int choose_custom_model=0x7f04000e;
-        public static final int custom_model=0x7f040013;
+        public static final int custom_model=0x7f040015;
         public static final int file_doesnt_exist=0x7f040004;
         public static final int help=0x7f040012;
-        public static final int help_file=0x7f040014;
+        public static final int help_file=0x7f040013;
         public static final int instructions=0x7f04000f;
         public static final int loading=0x7f040009;
         public static final int pickfile_intent_required=0x7f040003;

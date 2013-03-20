@@ -14,6 +14,7 @@ import java.util.Date;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -64,6 +65,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 	private final int MENU_ROTATE = 1;
 	private final int MENU_TRANSLATE = 2;
 	private final int MENU_SCREENSHOT = 3;
+	private final int MENU_INSTRUCTIONS=4;
 	
 	private int mode = MENU_SCALE;
 	String names;
@@ -120,7 +122,9 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
         menu.add(0, MENU_SCALE, 0, res.getText(R.string.scale))
         	.setIcon(R.drawable.scale);     
         menu.add(0, MENU_SCREENSHOT, 0, res.getText(R.string.take_screenshot))
-    		.setIcon(R.drawable.screenshoticon);     
+    		.setIcon(R.drawable.screenshoticon);
+        menu.add(0,MENU_INSTRUCTIONS,0,res.getText(R.string.instructions))
+        .setIcon(R.drawable.help);
         return true;
     }
     
@@ -139,6 +143,11 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 	        case MENU_SCREENSHOT:
 	        	new TakeAsyncScreenshot().execute();
 	        	return true;
+	        case MENU_INSTRUCTIONS:
+		        Intent intent = new Intent(ModelViewer.this, InstructionsActivity.class);
+	            intent.setAction(Intent.ACTION_VIEW);
+	            startActivity(intent);
+		        return true;
         }
         return false;
     }
@@ -321,7 +330,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 			Bitmap bm = takeScreenshot();
 			FileOutputStream fos;
 			try {
-				fos = new FileOutputStream("/sdcard/AndARScreenshot"+new Date().getTime()+".png");
+				fos = new FileOutputStream("/sdcard/EDC3D-"+new Date().getTime()+".png");
 				bm.compress(CompressFormat.PNG, 100, fos);
 				fos.flush();
 				fos.close();					
