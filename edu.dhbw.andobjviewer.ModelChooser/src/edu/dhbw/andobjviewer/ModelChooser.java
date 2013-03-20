@@ -8,7 +8,6 @@ import java.util.Vector;
 
 import edu.dhbw.andarmodelviewer.R;
 
-
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
