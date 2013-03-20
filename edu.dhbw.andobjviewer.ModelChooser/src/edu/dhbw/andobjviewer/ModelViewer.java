@@ -175,10 +175,9 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		 */
 		
 		public boolean onTouch(View v, MotionEvent event) {
-			if(!ArrayIterator.isAnynull(models) ) {
-				for(int i=0;i<models.length;i++)
-				{
-					Model model=models[i];
+			 
+				
+					//Model model=models[i];
 				switch(event.getAction()) {
 					//Action started
 					default:
@@ -192,20 +191,32 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 						float dY = lastY - event.getY();
 						lastX = event.getX();
 						lastY = event.getY();
-						if(model != null) {
+						if(!ArrayIterator.isAnynull(models) ){
 							switch(mode) {
 								case MENU_SCALE:
-									
-									model.setScale(dY/100.0f);
+									for(int i=0;i<models.length;i++)
+									{
+									Log.d("SCALE","SCALE FOR --"+i);
+									models[i].setScale(dY/100.0f);
+									}
 
 						            break;
 						        case MENU_ROTATE:
-						        	model.setXrot(-1*dX);//dY-> Rotation um die X-Achse
-									model.setYrot(-1*dY);//dX-> Rotation um die Y-Achse
-						            break;
+						        	for(int i=0;i<models.length;i++)
+									{
+						        	Log.d("ROTATE","ROTATE FOR --"+i);
+						        	models[i].setXrot(-1*dX);//dY-> Rotation um die X-Achse
+									models[i].setYrot(-1*dY);//dX-> Rotation um die Y-Achse
+									}
+									break;
+						            
 						        case MENU_TRANSLATE:
-						        	model.setXpos(dY/10f);
-									model.setYpos(dX/10f);
+						        	for(int i=0;i<models.length;i++)
+									{Log.d("TRANSLATE","TRANSALATE FOR --"+i);
+						        	models[i].setXpos(dY/10f);
+									models[i].setYpos(dX/10f);
+									
+									}
 
 						        	break;
 							}		
@@ -217,9 +228,16 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 						lastX = event.getX();
 						lastY = event.getY();
 						break;
+				
+			
+//				models[i]=model;
+				
 				}
-			}
-			}
+				
+				
+			
+			
+			
 			return true;
 		}
     	
