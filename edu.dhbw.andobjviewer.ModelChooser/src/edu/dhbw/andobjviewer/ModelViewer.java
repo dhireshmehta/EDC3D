@@ -81,7 +81,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 		super.onCreate(savedInstanceState);
 		super.setNonARRenderer(new LightingRenderer());//or might be omitted
 		res=getResources();
-		artoolkit = getArtoolkit();		
+		artoolkit =getArtoolkit();		
 		names =(String) res.getText(R.string.Names_markers_models); 
 		temptoken.setDelimiter(",");
 		temptoken.setStr(names);
@@ -198,27 +198,37 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 								case MENU_SCALE:
 									for(int i=0;i<models.length;i++)
 									{
-									Log.d("SCALE","SCALE FOR --"+i);
-									models[i].setScale(dY/100.0f);
+										if(models3d[i].isVisible()){
+								
+											Log.d("SCALE","SCALE FOR --"+i);
+											models[i].setScale(dY/100.0f);
+										}
 									}
 
 						            break;
 						        case MENU_ROTATE:
 						        	for(int i=0;i<models.length;i++)
 									{
-						        	Log.d("ROTATE","ROTATE FOR --"+i);
-						        	models[i].setXrot(-1*dX);//dY-> Rotation um die X-Achse
-									models[i].setYrot(-1*dY);//dX-> Rotation um die Y-Achse
+						        		if(models3d[i].isVisible()){
+											Log.d("ROTATE","ROTATE FOR --"+i);
+						        			models[i].setXrot(-1*dX);//dY-> Rotation um die X-Achse
+											models[i].setYrot(-1*dY);//dX-> Rotation um die Y-Achse
+									
+						        		}
+						        		
 									}
 									break;
 						            
 						        case MENU_TRANSLATE:
 						        	for(int i=0;i<models.length;i++)
-									{Log.d("TRANSLATE","TRANSALATE FOR --"+i);
-						        	models[i].setXpos(dY/10f);
-									models[i].setYpos(dX/10f);
-									
+									{
+						        		if(models3d[i].isVisible()){
+											Log.d("TRANSLATE","TRANSALATE FOR --"+i);
+						        			models[i].setXpos(dY/10f);
+						        			models[i].setYpos(dX/10f);
+										}
 									}
+						        	
 
 						        	break;
 							}		
