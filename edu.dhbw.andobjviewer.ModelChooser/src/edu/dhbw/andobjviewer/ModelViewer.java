@@ -256,9 +256,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     }
     
 	private class ModelLoader extends AsyncTask<Void, Void, Void> {
-		
-		
-    	@Override
+		@Override
     	protected Void doInBackground(Void... params) {
     		
     		for(int i=0;i<models.length;i++)
@@ -266,21 +264,18 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
     		
     		String number=temptoken.next();
     		
-    		
     		String modelFileName = number+".obj";
 			BaseFileUtil fileUtil= null;
 			
 			Log.d("Model Name", number);
 				fileUtil = new AssetsFileUtil(getResources().getAssets());
 				fileUtil.setBaseFolder("models/");
-				
-			
 			
 			//read the model file   :						
 			if(modelFileName.endsWith(".obj")) {
 				ObjParser parser = new ObjParser(fileUtil);
 				try {
-										if(fileUtil != null) {
+		            if(fileUtil != null) {
 						BufferedReader fileReader = fileUtil.getReaderFromName(modelFileName);
 						if(fileReader != null) {
 							models[i] = parser.parse("Model no-"+number, fileReader);
@@ -293,13 +288,8 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-			
-				
-				
 			}	
-			
-    		}
-    		
+			}
     		return null;
     	}
     	@Override
@@ -316,10 +306,7 @@ public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback
 			} catch (AndARException e) {
 				e.printStackTrace();
 			}
-    		
-			
-    		
-			startPreview();
+    		startPreview();
     	}
     }
 	

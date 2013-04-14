@@ -20,7 +20,7 @@ import edu.dhbw.andobjviewer.util.BaseFileUtil;
  *  - basic materials
  *  - faces(faces may not omit the face normal)
  *  - limited texture support, through the map_Kd statement (no options allowed, only image files allowed)
- * @author tobi
+ * @author EDC3D
  *
  */
 public class ObjParser {
