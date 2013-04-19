@@ -17,15 +17,15 @@
     along with AndObjViewer.  If not, see <http://www.gnu.org/licenses/>.
  
  */
-package edu.dhbw.andobjviewer.models;
+package edu.construct3d.models;
 
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 
 import android.graphics.Bitmap;
 
-import edu.dhbw.andobjviewer.util.BaseFileUtil;
-import edu.dhbw.andobjviewer.util.MemUtil;
+import edu.construct3d.util.BaseFileUtil;
+import edu.construct3d.util.MemUtil;
 
 public class Material implements Serializable {
 	/**

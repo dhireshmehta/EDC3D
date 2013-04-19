@@ -4,7 +4,7 @@
 
 
 
-package edu.dhbw.andobjviewer;
+package edu.construct3d;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -28,19 +28,19 @@ import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
+import edu.construct3d.graphics.LightingRenderer;
+import edu.construct3d.graphics.Model3D;
+import edu.construct3d.models.Model;
+import edu.construct3d.parser.ObjParser;
+import edu.construct3d.parser.ParseException;
+import edu.construct3d.parser.SimpleTokenizer;
+import edu.construct3d.util.ArrayIterator;
+import edu.construct3d.util.AssetsFileUtil;
+import edu.construct3d.util.BaseFileUtil;
 import edu.dhbw.andar.ARToolkit;
 import edu.dhbw.andar.AndARActivity;
 import edu.dhbw.andar.exceptions.AndARException;
-import edu.dhbw.andarmodelviewer.R;
-import edu.dhbw.andobjviewer.graphics.LightingRenderer;
-import edu.dhbw.andobjviewer.graphics.Model3D;
-import edu.dhbw.andobjviewer.models.Model;
-import edu.dhbw.andobjviewer.parser.ObjParser;
-import edu.dhbw.andobjviewer.parser.ParseException;
-import edu.dhbw.andobjviewer.parser.SimpleTokenizer;
-import edu.dhbw.andobjviewer.util.ArrayIterator;
-import edu.dhbw.andobjviewer.util.AssetsFileUtil;
-import edu.dhbw.andobjviewer.util.BaseFileUtil;
+import edu.construct3d.R;
 
 /**
 

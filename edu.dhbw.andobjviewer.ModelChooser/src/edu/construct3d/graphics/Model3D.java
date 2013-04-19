@@ -1,5 +1,5 @@
 
-package edu.dhbw.andobjviewer.graphics;
+package edu.construct3d.graphics;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -10,10 +10,10 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLUtils;
 
+import edu.construct3d.models.Group;
+import edu.construct3d.models.Material;
+import edu.construct3d.models.Model;
 import edu.dhbw.andar.ARObject;
-import edu.dhbw.andobjviewer.models.Group;
-import edu.dhbw.andobjviewer.models.Material;
-import edu.dhbw.andobjviewer.models.Model;
 
 
 /**

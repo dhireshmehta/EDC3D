@@ -1,4 +1,4 @@
-package edu.dhbw.andobjviewer.util;
+package edu.construct3d.util;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

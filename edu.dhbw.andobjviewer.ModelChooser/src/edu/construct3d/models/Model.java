@@ -1,4 +1,4 @@
-package edu.dhbw.andobjviewer.models;
+package edu.construct3d.models;
 
 
 import java.io.Serializable;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 
-import edu.dhbw.andobjviewer.util.BaseFileUtil;
+import edu.construct3d.util.BaseFileUtil;
 
 public class Model implements Serializable{
 	/**

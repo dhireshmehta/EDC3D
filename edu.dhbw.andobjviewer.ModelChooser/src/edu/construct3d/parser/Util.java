@@ -1,4 +1,4 @@
-package edu.dhbw.andobjviewer.parser;
+package edu.construct3d.parser;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

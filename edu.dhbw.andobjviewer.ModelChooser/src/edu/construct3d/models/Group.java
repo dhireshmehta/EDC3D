@@ -1,12 +1,12 @@
 
-package edu.dhbw.andobjviewer.models;
+package edu.construct3d.models;
 
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import edu.dhbw.andobjviewer.util.MemUtil;
+import edu.construct3d.util.MemUtil;
 
 /**
  * a group of faces.

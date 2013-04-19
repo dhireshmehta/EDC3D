@@ -1,12 +1,12 @@
 
-package edu.dhbw.andobjviewer.parser;
+package edu.construct3d.parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import edu.dhbw.andobjviewer.models.Material;
-import edu.dhbw.andobjviewer.models.Model;
-import edu.dhbw.andobjviewer.util.BaseFileUtil;
+import edu.construct3d.models.Material;
+import edu.construct3d.models.Model;
+import edu.construct3d.util.BaseFileUtil;
 
 
 

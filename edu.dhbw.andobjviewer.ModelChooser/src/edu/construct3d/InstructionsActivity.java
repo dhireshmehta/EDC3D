@@ -1,6 +1,6 @@
-package edu.dhbw.andobjviewer;
+package edu.construct3d;
 
-import edu.dhbw.andarmodelviewer.R;
+import edu.construct3d.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

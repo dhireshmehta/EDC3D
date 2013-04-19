@@ -1,4 +1,4 @@
-package edu.dhbw.andobjviewer.graphics;
+package edu.construct3d.graphics;
 
 import java.nio.FloatBuffer;
 

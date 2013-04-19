@@ -1,4 +1,4 @@
-package edu.dhbw.andobjviewer.parser;
+package edu.construct3d.parser;
 
 public class SimpleTokenizer {
 	String str = "";
