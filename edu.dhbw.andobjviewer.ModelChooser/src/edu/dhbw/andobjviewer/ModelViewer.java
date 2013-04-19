@@ -49,9 +49,7 @@ import edu.dhbw.andobjviewer.util.BaseFileUtil;
  */
 public class ModelViewer extends AndARActivity implements SurfaceHolder.Callback {
 	
-	/**
-	 * View a file in the assets folder
-	 */
+	
 	
 	/* Menu Options: */
 	private final int MENU_SCALE = 0;

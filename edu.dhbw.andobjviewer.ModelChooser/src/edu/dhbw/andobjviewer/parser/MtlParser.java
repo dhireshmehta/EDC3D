@@ -1,22 +1,4 @@
-/**
-	Copyright (C) 2010  Tobias Domhan
 
-    This file is part of AndObjViewer.
-
-    AndObjViewer is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    AndObjViewer is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with AndObjViewer.  If not, see <http://www.gnu.org/licenses/>.
- 
- */
 package edu.dhbw.andobjviewer.parser;
 
 import java.io.BufferedReader;
@@ -74,27 +56,25 @@ public class MtlParser {
 						String endOfLine = line.substring(3);
 						curMat.setSpecular(parseTriple(endOfLine));
 					} else if (line.startsWith("Ns ")) {
-						// specular color
+						// specular color range
 						String endOfLine = line.substring(3);
 						curMat.setShininess(Float.parseFloat(endOfLine));
 					} else if (line.startsWith("Tr ")) {
-						// specular color
+						// Alpha
 						String endOfLine = line.substring(3);
 						curMat.setAlpha(Float.parseFloat(endOfLine));
 					} else if (line.startsWith("d ")) {
-						// specular color
+						// Alpha
 						String endOfLine = line.substring(2);
 						curMat.setAlpha(Float.parseFloat(endOfLine));
 					} else if(line.startsWith("map_Kd ")) {
 						//limited texture support
 						String imageFileName = line.substring(7);
-						//für resources:Bitmap mBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.pic1);
 						curMat.setFileUtil(fileUtil);
 						curMat.setBitmapFileName(imageFileName);
 					} else if(line.startsWith("mapKd ")) {
 						//limited texture support
 						String imageFileName = line.substring(6);
-						//für resources:Bitmap mBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.pic1);
 						curMat.setFileUtil(fileUtil);
 						curMat.setBitmapFileName(imageFileName);
 					}

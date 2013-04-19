@@ -61,17 +61,16 @@ public class Model3D extends ARObject implements Serializable{
 			Material material = (Material) materialI.next();
 			if(material.hasTexture()) {
 				//load texture
-				gl.glGenTextures(1, tmpTextureID, 0);
-				gl.glBindTexture(GL10.GL_TEXTURE_2D, tmpTextureID[0]);
-				textureIDs.put(material, tmpTextureID[0]);
-				GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, material.getTexture(),0);
-				material.getTexture().recycle();
-				gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR);
+				gl.glGenTextures(1, tmpTextureID, 0); // Generate Texture ID and store in the array
+				gl.glBindTexture(GL10.GL_TEXTURE_2D, tmpTextureID[0]); // Bind the 2D-Texture to the ID generated
+				textureIDs.put(material, tmpTextureID[0]); //put in the Vector for local referencing
+				GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, material.getTexture(),0); // Generate the 2D-Texture from the Texture Bitmap
+				material.getTexture().recycle(); // clear unused bitmap memory
+				gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR); // Set Texture Parameters
 				gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR); 
 			}
 		}
 		
-		//transfer vertices to video memory
 	}
 	
 	
@@ -79,7 +78,6 @@ public class Model3D extends ARObject implements Serializable{
 	public void draw(GL10 gl) {
 		super.draw(gl);
 		
-		//gl = (GL10) GLDebugHelper.wrap(gl, GLDebugHelper.CONFIG_CHECK_GL_ERROR, log);
 		//do positioning:
 		gl.glScalef(model.scale, model.scale, model.scale);
 		gl.glTranslatef(model.xpos, model.ypos, model.zpos);
@@ -97,11 +95,13 @@ public class Model3D extends ARObject implements Serializable{
 			Group group = nonTexturedGroups[i];
 			Material mat = group.getMaterial();
 			if(mat != null) {
+				//Set Material Properties for lighting
 				gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, mat.specularlight);
 				gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, mat.ambientlight);
 				gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, mat.diffuselight);
 				gl.glMaterialf(GL10.GL_FRONT_AND_BACK, GL10.GL_SHININESS, mat.shininess);
 			}
+			
 			gl.glVertexPointer(3,GL10.GL_FLOAT, 0, group.vertices);
 	        gl.glNormalPointer(GL10.GL_FLOAT,0, group.normals);	        
 	        gl.glDrawArrays(GL10.GL_TRIANGLES, 0, group.vertexCount);

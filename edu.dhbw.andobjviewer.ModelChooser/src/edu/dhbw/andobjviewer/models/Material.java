@@ -145,15 +145,8 @@ public class Material implements Serializable {
 		if(fileUtil != null && bitmapFileName != null) {
 			texture = fileUtil.getBitmapFromName(bitmapFileName);
 		}
+		STATE=STATE_FINALIZED;
 	}
 	
-	/*
-	 * get  a google protocol buffers builder, that may be serialized
-	 */
-	/*public BufferMaterial getProtocolBuffer() {
-		ModelProtocolBuffer.BufferMaterial.Builder builder = ModelProtocolBuffer.BufferMaterial.newBuilder();
-		builder.setName(name);
-		return builder.build();
-	}*/
 	
 }

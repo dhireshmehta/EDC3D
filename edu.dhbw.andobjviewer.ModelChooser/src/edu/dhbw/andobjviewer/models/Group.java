@@ -1,22 +1,4 @@
-/**
-	Copyright (C) 2010  Tobias Domhan
 
-    This file is part of AndObjViewer.
-
-    AndObjViewer is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    AndObjViewer is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with AndObjViewer.  If not, see <http://www.gnu.org/licenses/>.
- 
- */
 package edu.dhbw.andobjviewer.models;
 
 import java.io.Serializable;
@@ -119,28 +101,17 @@ public class Group implements Serializable {
 			Float curVal = iterator.next();
 			vertices.put(curVal.floatValue());
 		}
-		//let the garbage collector free the memory
+		vertices.position(0);
 		groupVertices = null;
-		//System.gc();
 		normals = MemUtil.makeFloatBuffer(groupNormals.size());
 		for (Iterator<Float> iterator = groupNormals.iterator(); iterator.hasNext();) {
 			Float curVal =  iterator.next();
 			normals.put(curVal.floatValue());
 		}
-		//let the garbage collector free the memory
 		groupNormals = null;
-		//System.gc();
-		vertices.position(0);
 		normals.position(0);		
 	}
 	
-	/*
-	 * get  a google protocol buffers builder, that may be serialized
-	 */
-	/*public BufferGroup getProtocolBuffer() {
-		ModelProtocolBuffer.BufferGroup.Builder builder = ModelProtocolBuffer.BufferGroup.newBuilder();
-		
-		return builder.build();
-	}*/
+	
 	
 }
