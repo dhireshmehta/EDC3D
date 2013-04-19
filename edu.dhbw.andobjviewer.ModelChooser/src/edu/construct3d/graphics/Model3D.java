@@ -1,4 +1,3 @@
-
 package edu.construct3d.graphics;
 
 import java.io.Serializable;
@@ -18,7 +17,7 @@ import edu.dhbw.andar.ARObject;
 
 /**
  * represents a 3d model.
- * Edu-Construct 3D
+ * 
  *
  */
 public class Model3D extends ARObject implements Serializable{

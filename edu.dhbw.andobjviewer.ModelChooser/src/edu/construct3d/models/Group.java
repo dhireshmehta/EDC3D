@@ -1,4 +1,3 @@
-
 package edu.construct3d.models;
 
 import java.io.Serializable;

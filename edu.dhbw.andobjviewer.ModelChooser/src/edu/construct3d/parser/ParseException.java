@@ -1,4 +1,3 @@
-
 package edu.construct3d.parser;
 
 public class ParseException extends Exception {

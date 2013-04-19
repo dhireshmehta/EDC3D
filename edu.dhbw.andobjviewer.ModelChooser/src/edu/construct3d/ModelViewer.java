@@ -1,9 +1,3 @@
-
-
-
-
-
-
 package edu.construct3d;
 
 import java.io.BufferedReader;
