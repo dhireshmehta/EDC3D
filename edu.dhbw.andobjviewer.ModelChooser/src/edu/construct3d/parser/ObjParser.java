@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+
 import edu.construct3d.models.Group;
 import edu.construct3d.models.Model;
 import edu.construct3d.util.BaseFileUtil;
@@ -205,6 +207,7 @@ public class ObjParser {
 				} else if(line.startsWith("usemtl ")) {
 					//material changed -> new group
 					if(curGroup.groupVertices.size()>0) {
+						
 						model.addGroup(curGroup);
 						curGroup = new Group();
 					}

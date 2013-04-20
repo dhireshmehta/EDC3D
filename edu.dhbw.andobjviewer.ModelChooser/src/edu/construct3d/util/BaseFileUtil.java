@@ -8,16 +8,12 @@ public abstract class BaseFileUtil {
 	
 	protected String baseFolder = null;
 
-	/* (non-Javadoc)
-	 * @see edu.dhbw.andobjviewer.util.FileUtilInterface#getBaseFolder()
-	 */
+	
 	public String getBaseFolder() {
 		return baseFolder;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.dhbw.andobjviewer.util.FileUtilInterface#setBaseFolder(java.io.File)
-	 */
+	
 	public void setBaseFolder(String baseFolder) {
 		this.baseFolder = baseFolder;
 	}
